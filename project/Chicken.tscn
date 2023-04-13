@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://aseprites/chicken.png" type="Texture" id=1]
+[ext_resource path="res://Chicken.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 30.5041
+
+[node name="Chicken" type="KinematicBody2D"]
+input_pickable = true
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.5, 1.5 )
+shape = SubResource( 6 )
+
+[node name="Saunter" type="Timer" parent="."]
+
+[node name="Debounce" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="input_event" from="." to="." method="_on_Chicken_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Chicken_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Chicken_mouse_exited"]
+[connection signal="timeout" from="Saunter" to="." method="_on_Saunter_timeout"]
+[connection signal="timeout" from="Debounce" to="." method="_on_Debounce_timeout"]
