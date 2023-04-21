@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Chickens"
-run/main_scene="res://RaceTrack.tscn"
+run/main_scene="res://Coop.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Util="*res://Util.gd"
 
 [display]
 

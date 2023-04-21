@@ -11,13 +11,13 @@ var chickens = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in number_of_racers:
-		add_chicken()
+	var all_chickens = Util.load_game()
+	$CanvasLayer/MoneyLabel.text = str(Util.money)
+	for i in min(all_chickens.size(), number_of_racers):
+		add_chicken(all_chickens[i])
 
 
-func add_chicken():
-	var c = chicken_scene.instance()
-	c.set_skills(70, 70)
+func add_chicken(c:Node):
 	add_child(c)
 	chickens.append(c)
 	c.position = Vector2(lane_x, lane_y*chickens.size())
@@ -26,4 +26,11 @@ func add_chicken():
 	
 func _on_Chicken_finished(winner):
 	$WiinerGold.position = winner.position
-	get_tree().paused = true
+	for c in chickens: c.state = c.states.NOTHING
+	Util.money += 5
+	$CanvasLayer/MoneyLabel.text = str(Util.money)
+
+
+func _on_CoopButton_pressed() -> void:
+	Util.save_game()
+	get_tree().change_scene("res://Coop.tscn")

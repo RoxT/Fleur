@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Coop.gd" type="Script" id=1]
 [ext_resource path="res://textures/farmhouse.jpg" type="Texture" id=2]
 [ext_resource path="res://textures/leg_icon.png" type="Texture" id=3]
+[ext_resource path="res://textures/race_icon.png" type="Texture" id=4]
+[ext_resource path="res://textures/manger.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 360, 10 )
+extents = Vector2( 360, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 227 )
@@ -23,7 +25,7 @@ texture = ExtResource( 2 )
 [node name="Top" type="StaticBody2D" parent="Pen"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pen/Top"]
-position = Vector2( 360, 0 )
+position = Vector2( 360, 6 )
 shape = SubResource( 1 )
 
 [node name="Bottom" type="StaticBody2D" parent="Pen"]
@@ -63,5 +65,28 @@ margin_bottom = 350.0
 toggle_mode = true
 icon = ExtResource( 3 )
 
+[node name="RaceButton" type="Button" parent="CanvasLayer"]
+margin_left = 6.0
+margin_top = 24.0
+margin_right = 70.0
+margin_bottom = 88.0
+icon = ExtResource( 4 )
+
+[node name="Money Label" type="Label" parent="CanvasLayer"]
+margin_left = 85.0
+margin_top = 6.0
+margin_right = 125.0
+margin_bottom = 20.0
+text = "$10000"
+
+[node name="MangerButton" type="TextureButton" parent="CanvasLayer"]
+margin_left = 469.0
+margin_top = 301.0
+margin_right = 711.0
+margin_bottom = 487.0
+texture_normal = ExtResource( 5 )
+
 [connection signal="button_down" from="CanvasLayer/Add Chicken" to="." method="_on_Add_Chicken_button_down"]
 [connection signal="toggled" from="CanvasLayer/Remove Chicken" to="." method="_on_Remove_Chicken_toggled"]
+[connection signal="pressed" from="CanvasLayer/RaceButton" to="." method="_on_RaceButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MangerButton" to="." method="_on_MangerButton_pressed"]
