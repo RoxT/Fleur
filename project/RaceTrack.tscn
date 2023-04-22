@@ -39,13 +39,12 @@ margin_left = 23.0
 margin_top = 20.0
 margin_right = 73.0
 margin_bottom = 36.0
-text = "Coop"
 icon = ExtResource( 4 )
 
 [node name="MoneyLabel" type="Label" parent="CanvasLayer"]
-margin_left = 92.0
+margin_left = 150.0
 margin_top = 20.0
-margin_right = 140.0
+margin_right = 198.0
 margin_bottom = 34.0
 text = "$10000"
 
